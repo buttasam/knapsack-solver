@@ -18,7 +18,7 @@ public class Reader {
     public void readInstanceFiles() {
         try {
             Files.list(Paths.get("./" + this.path + "/instance")).sorted().forEach(f -> {
-                System.out.println(f.getFileName());
+                System.out.println(f.getFileName().toAbsolutePath());
             });
         } catch (IOException e) {
             e.printStackTrace();
