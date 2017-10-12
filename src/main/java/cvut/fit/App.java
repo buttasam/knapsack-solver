@@ -3,6 +3,7 @@ package cvut.fit;
 import cvut.fit.entity.ProblemInstance;
 import cvut.fit.file.Reader;
 import cvut.fit.logic.BruteForceSolver;
+import cvut.fit.logic.HeuristicSolver;
 import cvut.fit.logic.Solver;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class App {
 
         List<ProblemInstance> instances = reader.readInstanceFile("knap_04.inst.dat");
 
-        Solver solver = new BruteForceSolver();
+        Solver solver = new HeuristicSolver();
 
 
         instances.stream().map(i -> solver.solve(i)).forEach(problemSolution -> System.out.println(problemSolution.getMaxPrice()));

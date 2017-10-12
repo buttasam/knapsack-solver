@@ -4,6 +4,7 @@ import cvut.fit.entity.ProblemInstance;
 import cvut.fit.entity.ProblemSolution;
 import cvut.fit.entity.Thing;
 import cvut.fit.logic.BruteForceSolver;
+import cvut.fit.logic.HeuristicSolver;
 import cvut.fit.logic.Solver;
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,6 +38,31 @@ public class SolverTest {
         ProblemSolution result = solver.solve(problemInstance);
 
         Assert.assertEquals(expectedSolution.getMaxPrice(), result.getMaxPrice());
+    }
+
+
+    @Test
+    public void heuristicBasicTest() {
+        ProblemInstance problemInstance = new ProblemInstance();
+        problemInstance.setId(9000);
+        problemInstance.setCapacity(100);
+        problemInstance.setCount(4);
+
+
+        problemInstance.addThing(new Thing(18, 114));
+        problemInstance.addThing(new Thing(42, 136));
+        problemInstance.addThing(new Thing(88, 192));
+        problemInstance.addThing(new Thing(3, 223));
+
+
+        ProblemSolution expectedSolution = new ProblemSolution();
+        expectedSolution.setId(9000);
+        expectedSolution.setCount(4);
+        expectedSolution.setMaxPrice(473);
+
+        Solver solver = new HeuristicSolver();
+        ProblemSolution result = solver.solve(problemInstance);
+
     }
 
 
