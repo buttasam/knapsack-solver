@@ -8,9 +8,9 @@ public class Thing {
     private int price;
     private int weight;
 
-    public Thing(int price, int weight) {
-        this.price = price;
+    public Thing(int weight, int price) {
         this.weight = weight;
+        this.price = price;
     }
 
     public int getPrice() {
