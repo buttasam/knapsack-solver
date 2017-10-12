@@ -11,7 +11,6 @@ public class ProblemSolution {
     int id;
     int count;
     int maxPrice;
-    List<Boolean> results = new ArrayList<>();
 
 
     public int getId() {
@@ -38,19 +37,6 @@ public class ProblemSolution {
         this.maxPrice = maxPrice;
     }
 
-    public List<Boolean> getResults() {
-        return results;
-    }
-
-    public void setResults(List<Boolean> results) {
-        this.results = results;
-    }
-
-
-    public void addResult(Boolean result) {
-        this.results.add(result);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,8 +46,14 @@ public class ProblemSolution {
 
         if (id != that.id) return false;
         if (count != that.count) return false;
-        if (maxPrice != that.maxPrice) return false;
-        return results != null ? results.equals(that.results) : that.results == null;
+        return maxPrice == that.maxPrice;
     }
 
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + count;
+        result = 31 * result + maxPrice;
+        return result;
+    }
 }

@@ -14,13 +14,12 @@ import org.junit.Test;
 public class SolverTest {
 
 
-
     @Test
     public void basicTest() {
         ProblemInstance problemInstance = new ProblemInstance();
         problemInstance.setId(9000);
+        problemInstance.setCapacity(100);
         problemInstance.setCount(4);
-        problemInstance.setCount(100);
 
 
         problemInstance.addThing(new Thing(18, 114));
@@ -33,16 +32,11 @@ public class SolverTest {
         expectedSolution.setId(9000);
         expectedSolution.setCount(4);
         expectedSolution.setMaxPrice(473);
-        expectedSolution.addResult(true);
-        expectedSolution.addResult(true);
-        expectedSolution.addResult(false);
-        expectedSolution.addResult(true);
 
         Solver solver = new BruteForceSolver();
         ProblemSolution result = solver.solve(problemInstance);
 
-        Assert.assertEquals(expectedSolution, result);
-
+        Assert.assertEquals(expectedSolution.getMaxPrice(), result.getMaxPrice());
     }
 
 
