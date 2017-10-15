@@ -1,6 +1,7 @@
 package cvut.fit.util;
 
 import cvut.fit.entity.ProblemInstance;
+import cvut.fit.entity.ProblemSolution;
 import cvut.fit.entity.Thing;
 
 /**
@@ -22,6 +23,19 @@ public class Mapper {
         }
 
         return problemInstance;
+    }
+
+
+    public static ProblemSolution mapLineToProblemSolution(String line) {
+        String[] splited = line.split("\\s+");
+
+        ProblemSolution problemSolution = new ProblemSolution();
+        problemSolution.setId(Integer.parseInt(splited[0]));
+        problemSolution.setCount(Integer.parseInt(splited[1]));
+        problemSolution.setMaxPrice(Integer.parseInt(splited[2]));
+
+
+        return problemSolution;
     }
 
 }

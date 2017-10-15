@@ -12,8 +12,8 @@ public class HeuristicSolver implements Solver {
     @Override
     public ProblemSolution solve(ProblemInstance problemInstance) {
         problemInstance.getThings().sort((t1, t2) -> {
-            double p1 = t1.getPrice() / t1.getWeight();
-            double p2 = t2.getPrice() / t2.getWeight();
+            double p1 = ((double)t1.getPrice() / t1.getWeight());
+            double p2 = ((double)t2.getPrice() / t2.getWeight());
             if (p1 < p2) {
                 return 1;
             }
@@ -32,7 +32,7 @@ public class HeuristicSolver implements Solver {
 
             if (newWight <= problemInstance.getCapacity()) {
                 maxPrice += thing.getPrice();
-                weight += newWight;
+                weight += thing.getWeight();
             } else {
                 break;
             }

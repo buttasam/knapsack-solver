@@ -21,6 +21,9 @@ public class ProblemInstance {
     private List<Thing> things = new ArrayList<>();
 
 
+    // spravny vysledek
+    private int expectedResult;
+
     public int getId() {
         return id;
     }
@@ -55,5 +58,13 @@ public class ProblemInstance {
 
     public void addThing(Thing thing) {
         this.things.add(thing);
+    }
+
+    public int getExpectedResult() {
+        return expectedResult;
+    }
+
+    public void setExpectedResult(int expectedResult) {
+        this.expectedResult = expectedResult;
     }
 }

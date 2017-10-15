@@ -25,6 +25,8 @@ public class BruteForceSolver implements Solver {
 
         Set<Set<Thing>> powerSet = SetUtil.powerSet(problemInstance.getThings());
 
+       //System.out.println("-----------subsets-generated-----------");
+
         List<ProblemResult> results = powerSet.stream().map(this::mapSubsetToResult).collect(Collectors.toList());
         ProblemResult maxResult = results.stream()
                 .filter(r -> r.getCount() <= problemInstance.getCount())
