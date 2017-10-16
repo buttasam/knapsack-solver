@@ -1,10 +1,10 @@
 # This file is called   force.dat
 # Force-Deflection data for a beam and a bar
 # Počet instancí    Průměr
-4              0.254
-10            0.25445
-15            0.854
-
+4              0.07194140384945415
+10            0.030864208195483963
+15            0.009673343067280276
+20            0.013912327744868358
 
 
 # Scale font and line width (dpi) by changing the size! It will always display stretched.

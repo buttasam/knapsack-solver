@@ -20,19 +20,16 @@ public class App {
         // reader.readInstanceFiles();
         // reader.readSolutionFiles();
 
-        List<ProblemInstance> instances = reader.readInstanceFile("knap_04.inst.dat");
-        List<ProblemSolution> solutions = reader.readSolutionFile("knap_04.sol.dat");
+        List<ProblemInstance> instances = reader.readInstanceFile("knap_20.inst.dat");
+        List<ProblemSolution> solutions = reader.readSolutionFile("knap_20.sol.dat");
 
 
-        Solver solver = new BruteForceSolver();
+        SolverWrapper solverWrapper = new SolverWrapper();
 
-        for(int i = 0; i < instances.size(); i++) {
-            ProblemInstance problemInstace = instances.get(i);
-            ProblemSolution problemSolution = solutions.get(i);
 
-            SolverWrapper solverWrapper = new SolverWrapper();
-            solverWrapper.solveWithStats(problemInstace, problemSolution);
-        }
+        //solverWrapper.solveAllInstances(instances, solutions);
+        solverWrapper.solveBrutaleForceAllInstancesWithStats(instances, solutions);
+
 
 /*
 
@@ -42,8 +39,6 @@ public class App {
         SolverWrapper solverWrapper = new SolverWrapper();
         solverWrapper.solveWithStats(problemInstace, problemSolution);
 */
-
-
 
     }
 
