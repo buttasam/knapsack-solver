@@ -59,14 +59,14 @@ public class BruteForceSolver implements Solver {
 
         List<Thing> things = problemInstance.getThings();
 
-        for (int i = 0; i < (1 << things.size()); i++) {
+        for (long i = 0; i < ((long)1 << things.size()); i++) {
 
             int sumPrice = 0;
             int sumWeight = 0;
             int count = 0;
 
             for (int j = 0; j < things.size(); j++) {
-                if ((i & (1 << j)) > 0) {
+                if ((i & ((long) 1 << j)) > 0) {
                     count++;
                     sumPrice += things.get(j).getPrice();
                     sumWeight += things.get(j).getWeight();

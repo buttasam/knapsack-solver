@@ -77,8 +77,19 @@ public class SolverWrapper {
         return timeAvg;
     }
 
-    public void solveHeuristicAllInstancesWithStats(List<ProblemInstance> instances, List<ProblemSolution> solutions) {
+    public double solveHeuristicAllInstancesWithStats(List<ProblemInstance> instances, List<ProblemSolution> solutions) {
+        double time = 0;
+        for(int i = 0; i < instances.size(); i++) {
+            ProblemInstance currentInstance = instances.get(i);
+            Timer timer = new Timer("id: " + currentInstance.getId());
+            ProblemSolution currentSolution = heuristicSolver.solve(instances.get(i));
+            time += timer.stop();
+        }
 
+        double timeAvg = time / instances.size();
+        System.out.println("heuristic force time avg: " + timeAvg);
+
+        return timeAvg;
     }
 
 
