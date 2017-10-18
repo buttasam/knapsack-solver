@@ -28,7 +28,7 @@ public class SolverWrapper {
         ProblemSolution heuristicSolution = heuristicSolver.solve(problemInstance);
         heuristicTimer.stop();
 
-        if(expectedPrice != bruteForceSolution.getMaxPrice()) {
+        if (expectedPrice != bruteForceSolution.getMaxPrice()) {
             throw new RuntimeException();
         }
 
@@ -42,7 +42,7 @@ public class SolverWrapper {
     public void solveAllInstances(List<ProblemInstance> instances, List<ProblemSolution> solutions) {
         double sum = 0;
 
-        for(int i = 0; i < instances.size(); i++) {
+        for (int i = 0; i < instances.size(); i++) {
             ProblemInstance problemInstance = instances.get(i);
             ProblemSolution problemSolution = solutions.get(i);
 
@@ -60,13 +60,13 @@ public class SolverWrapper {
     public double solveBrutaleForceAllInstancesWithStats(List<ProblemInstance> instances, List<ProblemSolution> solutions) {
 
         double time = 0;
-        for(int i = 0; i < instances.size(); i++) {
+        for (int i = 0; i < instances.size(); i++) {
             ProblemInstance currentInstance = instances.get(i);
             Timer timer = new Timer("id: " + currentInstance.getId());
             ProblemSolution currentSolution = bruteForceSolver.solveIterative(instances.get(i));
             time += timer.stop();
 
-            if(solutions.get(i).getMaxPrice() != currentSolution.getMaxPrice()) {
+            if (solutions.get(i).getMaxPrice() != currentSolution.getMaxPrice()) {
                 throw new RuntimeException();
             }
         }
@@ -79,7 +79,7 @@ public class SolverWrapper {
 
     public double solveHeuristicAllInstancesWithStats(List<ProblemInstance> instances, List<ProblemSolution> solutions) {
         double time = 0;
-        for(int i = 0; i < instances.size(); i++) {
+        for (int i = 0; i < instances.size(); i++) {
             ProblemInstance currentInstance = instances.get(i);
             Timer timer = new Timer("id: " + currentInstance.getId());
             ProblemSolution currentSolution = heuristicSolver.solve(instances.get(i));
@@ -93,6 +93,18 @@ public class SolverWrapper {
     }
 
 
+    public double avgOfAvgHeuristic(List<ProblemInstance> instances, List<ProblemSolution> solutions, int n) {
+        double avg = 0;
+        for (int i = 0; i < n; i++) {
+            avg += solveHeuristicAllInstancesWithStats(instances, solutions);
+        }
+
+        double result = (avg / n);
+
+        System.out.println("brutal force avg of " + n + " : " + result);
+
+        return result;
+    }
 
 
 }

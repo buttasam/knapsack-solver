@@ -17,7 +17,7 @@ public class Timer {
     public long stop() {
         long stopped = System.currentTimeMillis();
         long duration = (stopped - started);
-        System.out.println(instance + " ---- time: " + duration);
+        //System.out.println(instance + " ---- time: " + duration);
 
         return duration;
     }
