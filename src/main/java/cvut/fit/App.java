@@ -20,8 +20,8 @@ public class App {
         // reader.readInstanceFiles();
         // reader.readSolutionFiles();
 
-        List<ProblemInstance> instances = reader.readInstanceFile("knap_20.inst.dat");
-        List<ProblemSolution> solutions = reader.readSolutionFile("knap_20.sol.dat");
+        List<ProblemInstance> instances = reader.readInstanceFile("knap_30.inst.dat");
+        List<ProblemSolution> solutions = reader.readSolutionFile("knap_30.sol.dat");
 
 
         SolverWrapper solverWrapper = new SolverWrapper();

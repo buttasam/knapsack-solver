@@ -12,7 +12,7 @@ import java.util.List;
 public class SolverWrapper {
 
 
-    private Solver bruteForceSolver = new BruteForceSolver();
+    private BruteForceSolver bruteForceSolver = new BruteForceSolver();
     private Solver heuristicSolver = new HeuristicSolver();
 
 
@@ -63,7 +63,7 @@ public class SolverWrapper {
         for(int i = 0; i < instances.size(); i++) {
             ProblemInstance currentInstance = instances.get(i);
             Timer timer = new Timer("id: " + currentInstance.getId());
-            ProblemSolution currentSolution = bruteForceSolver.solve(instances.get(i));
+            ProblemSolution currentSolution = bruteForceSolver.solveIterative(instances.get(i));
             time += timer.stop();
 
             if(solutions.get(i).getMaxPrice() != currentSolution.getMaxPrice()) {
