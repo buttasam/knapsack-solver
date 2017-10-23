@@ -39,6 +39,43 @@ public class SolverWrapper {
     }
 
 
+    public double solveHeuristicWithApproximationError(ProblemInstance problemInstance, ProblemSolution expectedSolution) {
+
+        int expectedPrice = expectedSolution.getMaxPrice();
+
+        Timer heuristicTimer = new Timer(String.valueOf(problemInstance.getId()));
+        ProblemSolution heuristicSolution = heuristicSolver.solve(problemInstance);
+        heuristicTimer.stop();
+
+
+        double approximationError = (double) (expectedPrice - heuristicSolution.getMaxPrice()) / expectedSolution.getMaxPrice();
+
+        return approximationError;
+    }
+
+
+    public double solveAllHeuristicWithApproximationError(List<ProblemInstance> instances, List<ProblemSolution> solutions) {
+        double avgSum = 0;
+        double max = 0;
+
+        for(int i = 0; i < instances.size(); i++) {
+            double result = solveHeuristicWithApproximationError(instances.get(i), solutions.get(i));
+
+            if(max < result) {
+                max = result;
+            }
+
+            avgSum += result;
+        }
+
+        double avg = avgSum / instances.size();
+
+        System.out.println((avg * 100) + " \\% & " + (max * 100) + " \\%");
+
+        return avg;
+    }
+
+
     public void solveAllInstances(List<ProblemInstance> instances, List<ProblemSolution> solutions) {
         double sum = 0;
 

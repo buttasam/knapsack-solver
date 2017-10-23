@@ -33,10 +33,7 @@ public class HeuristicSolver implements Solver {
             if (newWight <= problemInstance.getCapacity()) {
                 maxPrice += thing.getPrice();
                 weight += thing.getWeight();
-            } else {
-                break;
             }
-
         }
 
         ProblemSolution solution = new ProblemSolution();
