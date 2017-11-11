@@ -114,4 +114,9 @@ public class ProblemInstance {
     public boolean capacityOverflow() {
         return (getWeightForOption() > capacity);
     }
+
+
+    public int pricesSum() {
+        return things.stream().mapToInt(Thing::getPrice).sum();
+    }
 }
