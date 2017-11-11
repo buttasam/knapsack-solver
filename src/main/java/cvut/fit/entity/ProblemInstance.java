@@ -21,6 +21,8 @@ public class ProblemInstance {
     private List<Thing> things = new ArrayList<>();
 
 
+    private List<Boolean> option = new ArrayList<>();
+
     // spravny vysledek
     private int expectedResult;
 
@@ -66,5 +68,50 @@ public class ProblemInstance {
 
     public void setExpectedResult(int expectedResult) {
         this.expectedResult = expectedResult;
+    }
+
+
+    public List<Boolean> getOption() {
+        return option;
+    }
+
+    public void setOption(List<Boolean> option) {
+        this.option = option;
+    }
+
+
+    public int getPriceForOption() {
+        int price = 0;
+        for(int i = 0; i < option.size(); i++) {
+            if(option.get(i)) {
+                price += things.get(i).getPrice();
+            }
+        }
+        return price;
+    }
+
+
+    public int getWeightForOption() {
+        int weight = 0;
+        for(int i = 0; i < option.size(); i++) {
+            if(option.get(i)) {
+                weight += things.get(i).getWeight();
+            }
+        }
+        return weight;
+    }
+
+
+    public int sumPriceForRamainingThings() {
+        int price = 0;
+        for(int i = option.size(); i < things.size(); i++) {
+                price += things.get(i).getWeight();
+        }
+        return price;
+    }
+
+
+    public boolean capacityOverflow() {
+        return (getWeightForOption() > capacity);
     }
 }
