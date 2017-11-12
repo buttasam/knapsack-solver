@@ -26,8 +26,11 @@ public class BBSolver implements Solver {
         List<Boolean> option = new ArrayList<>();
         solveRec(option);
 
+        // System.out.println(bestPrice);
+        ProblemSolution solution = new ProblemSolution();
+        solution.setMaxPrice(bestPrice);
         System.out.println(bestPrice);
-        return null;
+        return solution;
     }
 
 
@@ -37,21 +40,21 @@ public class BBSolver implements Solver {
         problemInstance.setOption(option);
         int currentOptionPrice = problemInstance.getPriceForOption();
 
-        if(problemInstance.capacityOverflow()) {
+        if (problemInstance.capacityOverflow()) {
             return;
         }
 
-        if(bestPrice < currentOptionPrice) {
+        if (bestPrice < currentOptionPrice) {
             bestPrice = problemInstance.getPriceForOption();
         }
 
         // oriznuti pokud jiz neni mozne nalezt lepsi cenu
 
-        if(bestPrice > currentOptionPrice + problemInstance.sumPriceForRamainingThings()) {
+        if (bestPrice > (currentOptionPrice + problemInstance.sumPriceForRamainingThings())) {
             return;
         }
 
-            if (option.size() == count) {
+        if (option.size() == count) {
             // konec rekurze
             return;
         }

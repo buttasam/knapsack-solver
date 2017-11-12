@@ -130,6 +130,23 @@ public class SolverWrapper {
     }
 
 
+
+    public double solveAllInstancesWithStats(List<ProblemInstance> instances, List<ProblemSolution> solutions, Solver solveType) {
+        double time = 0;
+        for (int i = 0; i < instances.size(); i++) {
+            ProblemInstance currentInstance = instances.get(i);
+            Timer timer = new Timer("id: " + currentInstance.getId());
+            ProblemSolution currentSolution = solveType.solve(instances.get(i));
+
+            time += timer.stop();
+        }
+
+        double timeAvg = time / instances.size();
+
+        return timeAvg;
+    }
+
+
     public double avgOfAvgHeuristic(List<ProblemInstance> instances, List<ProblemSolution> solutions, int n) {
         double avg = 0;
         for (int i = 0; i < n; i++) {

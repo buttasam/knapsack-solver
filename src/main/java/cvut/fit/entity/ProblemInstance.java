@@ -105,7 +105,7 @@ public class ProblemInstance {
     public int sumPriceForRamainingThings() {
         int price = 0;
         for(int i = option.size(); i < things.size(); i++) {
-                price += things.get(i).getWeight();
+                price += things.get(i).getPrice();
         }
         return price;
     }
