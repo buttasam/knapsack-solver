@@ -17,7 +17,7 @@ public class App {
     public static void main(String[] args) {
         Reader reader = new Reader("data");
 
-        String fileNumbers[] = {"40"};
+        String fileNumbers[] = {"04", "10", "15","20","22","25","27","30", "32","35","37","40",};
 
         //String fileNumber = "20";
 
@@ -26,7 +26,7 @@ public class App {
             List<ProblemSolution> solutions = reader.readSolutionFile("knap_" + fileNumber + ".sol.dat");
 
             SolverWrapper solverWrapper = new SolverWrapper();
-            System.out.println(fileNumber + " - " + solverWrapper.solveAllInstancesWithStats(instances, solutions, new BBSolver()));
+            System.out.println(fileNumber + " - " + solverWrapper.solveAllInstancesWithStatsAvg(instances, solutions, new DynamicSolver(), 1000));
         }
 
 

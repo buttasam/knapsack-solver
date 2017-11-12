@@ -147,6 +147,19 @@ public class SolverWrapper {
     }
 
 
+
+    public double solveAllInstancesWithStatsAvg(List<ProblemInstance> instances, List<ProblemSolution> solutions, Solver solveType , int n) {
+        double avg = 0;
+        for (int i = 0; i < n; i++) {
+            avg +=  solveAllInstancesWithStats(instances, solutions, solveType);
+        }
+
+        double result = (avg / n);
+
+        return result;
+    }
+
+
     public double avgOfAvgHeuristic(List<ProblemInstance> instances, List<ProblemSolution> solutions, int n) {
         double avg = 0;
         for (int i = 0; i < n; i++) {

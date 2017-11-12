@@ -32,7 +32,7 @@ public class BBSolver implements Solver {
         // System.out.println(bestPrice);
         ProblemSolution solution = new ProblemSolution();
         solution.setMaxPrice(bestPrice);
-        System.out.println(bestPrice);
+        //System.out.println(bestPrice);
         return solution;
     }
 
