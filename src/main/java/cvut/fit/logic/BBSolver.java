@@ -19,6 +19,9 @@ public class BBSolver implements Solver {
 
     @Override
     public ProblemSolution solve(ProblemInstance problemInstance) {
+        // vycisteni pro novy beh
+        this.bestPrice = 0;
+
         this.problemInstance = problemInstance;
         this.count = problemInstance.getCount();
 
@@ -36,7 +39,7 @@ public class BBSolver implements Solver {
 
     public void solveRec(List<Boolean> option) {
 
-        System.out.println(option);
+        //System.out.println(option);
         problemInstance.setOption(option);
         int currentOptionPrice = problemInstance.getPriceForOption();
 

@@ -30,9 +30,12 @@ public class DynamicSolver implements Solver {
         // vyplneni tabulku
         fillTable();
 
-        findResult();
+        int bestPrice = findResult();
 
-        return null;
+        ProblemSolution solution = new ProblemSolution();
+        solution.setMaxPrice(bestPrice);
+
+        return solution;
     }
 
 
@@ -76,15 +79,17 @@ public class DynamicSolver implements Solver {
     }
 
 
-    public void findResult() {
+    public int findResult() {
         for (int i = sumPrice - 1; i > 0; i--) {
             int tmpResult = table[thingsCount - 1][i];
             if (tmpResult <= problemInstance.getCapacity()) {
-                System.out.println("result weight: " + tmpResult);
-                System.out.println("result price: " + i);
-                break;
+/*                System.out.println("result weight: " + tmpResult);
+                System.out.println("result price: " + i);*/
+                return i;
             }
         }
+        // nemelo by nastat
+        throw new RuntimeException();
     }
 
 }
