@@ -4,6 +4,9 @@ import cvut.fit.entity.ProblemInstance;
 import cvut.fit.entity.ProblemSolution;
 import cvut.fit.entity.Thing;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Samuel Butta
  */
@@ -30,12 +33,7 @@ public class DynamicSolver implements Solver {
         // vyplneni tabulku
         fillTable();
 
-        int bestPrice = findResult();
-
-        ProblemSolution solution = new ProblemSolution();
-        solution.setMaxPrice(bestPrice);
-
-        return solution;
+        return findResult();
     }
 
 
@@ -79,17 +77,45 @@ public class DynamicSolver implements Solver {
     }
 
 
-    public int findResult() {
+    public ProblemSolution findResult() {
         for (int i = sumPrice - 1; i > 0; i--) {
             int tmpResult = table[thingsCount - 1][i];
             if (tmpResult <= problemInstance.getCapacity()) {
 /*                System.out.println("result weight: " + tmpResult);
                 System.out.println("result price: " + i);*/
-                return i;
+
+                int y = i;
+
+                // vektor reseni
+                List<Boolean> option = new ArrayList<>();
+                problemInstance.getThings().forEach(t -> {option.add(false);});
+
+                for(int x = thingsCount - 2; x >= 0; x--) {
+                    if(table[x][y] != table[x + 1][y]) {
+                        option.set(x, true);
+                        y -= problemInstance.getThings().get(x).getPrice();
+                    }
+                }
+
+                ProblemSolution problemSolution = new ProblemSolution();
+                problemSolution.setMaxPrice(i);
+                problemSolution.setOption(option);
+
+                return problemSolution;
             }
         }
         // nemelo by nastat
         throw new RuntimeException();
     }
+
+/*    private void findSolutionVector(int priceIdx) {
+        for (int nIdx = inst.getKnapsackItems().size() - 1; nIdx >= 0; nIdx--) {
+            if (weightsTable[nIdx][priceIdx] != weightsTable[nIdx + 1][priceIdx]) {
+                sol.setAt(nIdx, true);
+                priceIdx -= inst.getKnapsackItems().get(nIdx).getPrice();
+            } else
+                sol.setAt(nIdx, false);
+        }
+    }*/
 
 }

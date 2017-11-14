@@ -54,6 +54,17 @@ public class SolverWrapper {
     }
 
 
+
+    public double solveWithApproximationError(ProblemInstance problemInstance, ProblemSolution expectedSolution, Solver solver) {
+        int expectedPrice = expectedSolution.getMaxPrice();
+
+        ProblemSolution solution = solver.solve(problemInstance);
+
+        double approximationError = (double) (expectedPrice - solution.getMaxPrice()) / expectedSolution.getMaxPrice();
+
+        return approximationError;
+    }
+
     public double solveAllHeuristicWithApproximationError(List<ProblemInstance> instances, List<ProblemSolution> solutions) {
         double avgSum = 0;
         double max = 0;
@@ -146,6 +157,20 @@ public class SolverWrapper {
         return timeAvg;
     }
 
+
+    public double solveAllInstancesWithMaxApproximationError(List<ProblemInstance> instances, List<ProblemSolution> solutions, Solver solveType) {
+        double maxError = 0;
+        for (int i = 0; i < instances.size(); i++) {
+            ProblemInstance currentInstance = instances.get(i);
+
+            ProblemSolution currentSolution = solutions.get(i);
+            double approximationError = solveWithApproximationError(currentInstance, currentSolution, solveType);
+
+            maxError = Math.max(maxError, approximationError);
+        }
+
+        return maxError;
+    }
 
 
     public double solveAllInstancesWithStatsAvg(List<ProblemInstance> instances, List<ProblemSolution> solutions, Solver solveType , int n) {

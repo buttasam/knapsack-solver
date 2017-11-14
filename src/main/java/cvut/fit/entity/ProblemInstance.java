@@ -119,4 +119,9 @@ public class ProblemInstance {
     public int pricesSum() {
         return things.stream().mapToInt(Thing::getPrice).sum();
     }
+
+    public int maxPrice() {
+        return things.stream().mapToInt(Thing::getPrice).max().getAsInt();
+    }
+
 }

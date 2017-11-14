@@ -12,6 +12,8 @@ public class ProblemSolution {
     int count;
     int maxPrice;
 
+    // vektor reseni
+    private List<Boolean> option = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -55,5 +57,13 @@ public class ProblemSolution {
         result = 31 * result + count;
         result = 31 * result + maxPrice;
         return result;
+    }
+
+    public List<Boolean> getOption() {
+        return option;
+    }
+
+    public void setOption(List<Boolean> option) {
+        this.option = option;
     }
 }
