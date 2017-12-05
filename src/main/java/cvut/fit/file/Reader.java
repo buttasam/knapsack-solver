@@ -57,7 +57,7 @@ public class Reader {
     }
 
 
-    public List<ProblemInstance> mapInstance(Path path) {
+    public static List<ProblemInstance> mapInstance(Path path) {
         try {
             Stream<String> stream = Files.lines(path);
             List<ProblemInstance> problemInstanceList = stream.map(Mapper::mapLineToProbleInstance).collect(Collectors.toList());

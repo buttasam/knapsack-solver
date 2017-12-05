@@ -163,7 +163,13 @@ public class SolverWrapper {
         for (int i = 0; i < instances.size(); i++) {
             ProblemInstance currentInstance = instances.get(i);
 
-            ProblemSolution currentSolution = solutions.get(i);
+            ProblemSolution currentSolution;
+            if(solutions == null) {
+                DynamicSolver dynamicSolver = new DynamicSolver();
+                currentSolution = dynamicSolver.solve(currentInstance);
+            } else {
+                currentSolution = solutions.get(i);
+            }
             double approximationError = solveWithApproximationError(currentInstance, currentSolution, solveType);
 
             maxError = Math.max(maxError, approximationError);

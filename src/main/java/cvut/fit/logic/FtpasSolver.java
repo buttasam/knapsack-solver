@@ -43,9 +43,10 @@ public class FtpasSolver implements Solver {
         // secist puvodi ceny
         problemInstance.setThings(originalThings);
         problemInstance.setOption(solution.getOption());
-        System.out.println(problemInstance.getPriceForOption());
 
-        return null;
+        solution.setMaxPrice(problemInstance.getPriceForOption());
+
+        return solution;
     }
 
 }

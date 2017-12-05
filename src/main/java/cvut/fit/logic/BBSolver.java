@@ -52,7 +52,6 @@ public class BBSolver implements Solver {
         }
 
         // oriznuti pokud jiz neni mozne nalezt lepsi cenu
-
         if (bestPrice > (currentOptionPrice + problemInstance.sumPriceForRamainingThings())) {
             return;
         }
