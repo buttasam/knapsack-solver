@@ -2,6 +2,7 @@ package cvut.fit.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author Samuel Butta
@@ -122,6 +123,27 @@ public class ProblemInstance {
 
     public int maxPrice() {
         return things.stream().mapToInt(Thing::getPrice).max().getAsInt();
+    }
+
+    public void setRandomOption() {
+        List<Boolean> option = new ArrayList<>();
+
+        for(int i = 0; i < things.size(); i++) {
+            Random random = new Random();
+            if(random.nextInt() % 2 == 0) {
+                option.add(true);
+            } else {
+                option.add(false);
+            }
+        }
+        setOption(option);
+    }
+
+    public void setRandomValidOption() {
+        setRandomOption();
+        while(capacityOverflow()) {
+            setRandomOption();
+        }
     }
 
 }
