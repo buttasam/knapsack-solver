@@ -54,6 +54,32 @@ public class SolverWrapper {
     }
 
 
+    public double solveAllInstancesWithApproximationError(List<ProblemInstance> instances, List<ProblemSolution> solutions, Solver solveType) {
+        double error = 0;
+        for (int i = 0; i < instances.size(); i++) {
+            ProblemInstance currentInstance = instances.get(i);
+            ProblemSolution currentSolution = solutions.get(i);
+
+            error += solveWithApproximationError(currentInstance, currentSolution, solveType);
+        }
+
+        return error / instances.size();
+    }
+
+    public double solveAllInstancesWithApproximationErrorAvg(List<ProblemInstance> instances, List<ProblemSolution> solutions, Solver solveType, int n) {
+        double avg = 0;
+        for (int i = 0; i < n; i++) {
+            avg +=  solveAllInstancesWithApproximationError(instances, solutions, solveType);
+        }
+
+        double result = (avg / n);
+
+        return result;
+    }
+
+
+
+
 
     public double solveWithApproximationError(ProblemInstance problemInstance, ProblemSolution expectedSolution, Solver solver) {
         int expectedPrice = expectedSolution.getMaxPrice();

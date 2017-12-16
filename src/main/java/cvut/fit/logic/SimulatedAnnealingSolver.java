@@ -11,10 +11,24 @@ public class SimulatedAnnealingSolver implements Solver {
     /**
      * Params
      */
-    private static final double INIT_TEMPERATURE = 1000;
-    private static final double FINAL_TEMP = 10;
-    private static final double COOLING_CONSTANT = 0.85;
-    private static final int STEPS = 100;
+    private final double INIT_TEMPERATURE;
+    private final double FINAL_TEMP;
+    private final double COOLING_CONSTANT;
+    private final int STEPS;
+
+    public SimulatedAnnealingSolver() {
+        INIT_TEMPERATURE = 1000;
+        FINAL_TEMP = 10;
+        COOLING_CONSTANT = 0.85;
+        STEPS = 100;
+    }
+
+    public SimulatedAnnealingSolver(double INIT_TEMPERATURE, double FINAL_TEMP, double COOLING_CONSTANT, int STEPS) {
+        this.INIT_TEMPERATURE = INIT_TEMPERATURE;
+        this.FINAL_TEMP = FINAL_TEMP;
+        this.COOLING_CONSTANT = COOLING_CONSTANT;
+        this.STEPS = STEPS;
+    }
 
     @Override
     public ProblemSolution solve(ProblemInstance problemInstance) {
